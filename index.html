@@ -13,37 +13,29 @@
         <a class="navbar-brand" href="#">Tripma</a>
         <div class="container-fluid">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li v-for="(pages, index) in links" class="nav-item active" :key="index">
+                <li v-for="(page, index) in pages" class="nav-item active" :key="index">
                     <a 
                     class="nav-link" 
                     aria-current="page" 
-                    v-bind:href="link.url"
-                    :title = "`This goes to ${link.name}`"
-                    >{{link.name}}</a> 
+                    v-bind:href="page.link.url"
+                    :title="`This goes to ${page.link.name}`"
+                    v-on:click.prevent="activePage = index"
+                    >{{page.link.name}}</a> 
                 </li>
             </ul>
         </div>
     </nav>
 
     <div id="content" class="container">
-        <h1>{{ pageTitle }}</h1>
-        <p>{{ content }}</p>
+        <h1>{{ pages[activePage].pageTitle }}</h1>
+        <p>{{ pages[activePage].content }}</p>
     </div>
+
     <script>
         Vue.createApp({
             data(){
                 return{
-                    links: [
-                        {name: 'Home', url: 'index.html'},
-                        {name: 'About', url: 'about.html'},
-                        {name: 'Contact', url: 'contact.html'}
-                    ]
-                }
-            }
-        }).mount('nav')
-        Vue.createApp({
-            data(){
-                return{
+                    activePage: 0,
                     pages: [
                         {
                             link: {name: 'Home', url: 'index.html'},
@@ -63,7 +55,7 @@
                     ]
                 };
             }
-        }).mount('#content');
+        }).mount('body');
     </script>
 
 
