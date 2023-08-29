@@ -1,0 +1,14 @@
+CSS-lesson 1
+*   changing bootstrap css classes by using bind:
+        ``` 
+            <nav 
+            class="navbar navbar-expand-lg"
+            :class="{'navbar-dark bg-dark': useDarkNavBar, 'navbar-light bg-light': !useDarkNavBar }"    
+            >
+        ```
+    --> binded by using an object and assigning a value by conditional statements
+
+CSS-Lesson 2
+*   compute-property: 
+        computes properties on the fly
+        vue knows it has to react to if its inside a compute property
